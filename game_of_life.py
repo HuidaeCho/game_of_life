@@ -41,15 +41,14 @@ def update(tick):
     [nrows,ncols] = gen.shape
     for i in range(nrows):
         for j in range(ncols):
-            n = 0
-            n += i > 0 and gen[i-1,j]
-            n += i > 0 and j > 0 and gen[i-1,j-1]
-            n += i > 0 and j < ncols-1 and gen[i-1,j+1]
-            n += i < nrows-1 and gen[i+1,j]
-            n += i < nrows-1 and j > 0 and gen[i+1,j-1]
-            n += i < nrows-1 and j < ncols-1 and gen[i+1,j+1]
-            n += j > 0 and gen[i,j-1]
-            n += j < ncols-1 and gen[i,j+1]
+            n = (i > 0 and gen[i-1,j]) + \
+                (i > 0 and j > 0 and gen[i-1,j-1]) + \
+                (i > 0 and j < ncols-1 and gen[i-1,j+1]) + \
+                (i < nrows-1 and gen[i+1,j]) + \
+                (i < nrows-1 and j > 0 and gen[i+1,j-1]) + \
+                (i < nrows-1 and j < ncols-1 and gen[i+1,j+1]) + \
+                (j > 0 and gen[i,j-1]) + \
+                (j < ncols-1 and gen[i,j+1])
             next_gen[i,j] = (gen[i,j] and (n == 2 or n == 3)) or \
                             (not gen[i,j] and n == 3)
     im.set_data(next_gen)
