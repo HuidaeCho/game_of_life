@@ -1,6 +1,6 @@
 # Conway's Game of Life
 
-This script plays Conway's Game of Life.
+This Python script plays Conway's Game of Life.
 
 ## License
 
