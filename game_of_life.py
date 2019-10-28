@@ -57,5 +57,5 @@ def update(tick):
     next_gen = tmp
     return im,
 
-ani = FuncAnimation(fig, update, frames=range(10), init_func=init, blit=True)
+FuncAnimation(fig, update, frames=range(10), init_func=init, blit=True)
 plt.show()
