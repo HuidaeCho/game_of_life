@@ -25,20 +25,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-gen = np.random.randint(2, size=(100,100))
-
-next_gen = gen.copy()
-
 fig, ax = plt.subplots()
 plt.axis('off')
-im = plt.imshow(gen, cmap='gray_r')
 
 def init():
+    global gen, next_gen, im
+    gen = np.random.randint(2, size=(100,100))
+    next_gen = gen.copy()
+    im = plt.imshow(gen, cmap='gray_r')
     return im,
 
 def update(tick):
     global gen, next_gen
-    [nrows,ncols] = gen.shape
+    nrows, ncols = gen.shape
     for i in range(nrows):
         for j in range(ncols):
             n = 0
@@ -73,5 +72,5 @@ def update(tick):
     next_gen = tmp
     return im,
 
-FuncAnimation(fig, update, frames=range(10), init_func=init, blit=True)
+ani = FuncAnimation(fig, update, init_func=init, blit=True)
 plt.show()
